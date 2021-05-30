@@ -9,7 +9,7 @@
 const shiftElementsCircular = (arr, startIndex = 0, endIndex = arr.length - 1) => {
     let popinElement = arr[startIndex];
     let popoutElement;
-    for(let i = startIndex + 1; i <= endIndex; i++) {
+    for(let i = startIndex + 1; i <= endIndex; i ++) {
         popoutElement = arr[i];
         arr[i] = popinElement;
         popinElement = popoutElement;
@@ -25,7 +25,7 @@ const shiftElementsCircular = (arr, startIndex = 0, endIndex = arr.length - 1) =
 const insertionSort = (arr) => {
     for(let i = 1; i< arr.length-1; i ++) {
         if(arr[i] < arr [i-1]) {
-            for(j=i; j >= 0; j++) {
+            for(j = i; j >= 0; j ++) {
                 if(arr[i] > arr[j]) {
                     shiftElementsCircular(arr, j+1, i);
                     break;
