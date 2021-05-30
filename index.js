@@ -1,8 +1,10 @@
-const mergeSort = require('./sort/mergesort/mergesort');
-const quickSort = require('./sort/quicksort/quicksort');
-const bubbleSort = require('./sort/bubblesort/bubblesort');
-const selectionSort = require('./sort/selectionsort/selectionsort');
-const insertionSort = require('./sort/insertionsort/insertionsort');
+const {
+    mergeSort,
+    quickSort,
+    bubbleSort,
+    selectionSort,
+    insertionSort
+} = require('./sort');
 const generateRandomArray = require('./randomData/array/randomArray');
 
 const dataToTest = generateRandomArray(2000, 99999999);
