@@ -36,6 +36,7 @@ const initiateBubbleSort = (arr) => {
     const sortedArray = bubbleSort(arr);
     const endTime = Date.now();
     return {
+        sortingType: 'Bubble Sort',
         startTime,
         endTime,
         executionTime: endTime-startTime,

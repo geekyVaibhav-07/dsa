@@ -35,6 +35,7 @@ const initiateSelectionSort = (arr) => {
     const sortedArray = selectionSort(arr);
     const endTime = Date.now();
     return {
+        sortingType: 'Selection Sort',
         startTime,
         endTime,
         executionTime: endTime-startTime,

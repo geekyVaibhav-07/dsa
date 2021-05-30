@@ -32,6 +32,7 @@ const initiateMergeSort = (arr) => {
     const sortedArray = mergeSort(arr);
     const endTime = Date.now();
     return {
+        sortingType: 'Merge Sort',
         startTime,
         endTime,
         executionTime: endTime-startTime,

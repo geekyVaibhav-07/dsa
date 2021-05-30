@@ -37,6 +37,7 @@ const initiateQuickSort = (arr) => {
     const sortedArray = quickSort([ ...arr ]);
     const endTime = Date.now();
     return {
+        sortingType: 'Quick Sort',
         startTime,
         endTime,
         executionTime: endTime-startTime,
