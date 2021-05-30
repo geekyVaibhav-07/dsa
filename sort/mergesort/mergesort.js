@@ -13,7 +13,6 @@ const merge = (leftArr = [], rightArr = []) => {
     return mergedArray;
 }
 
-
 /**
  * time complexity = O(nlogn)
  * algo => split - sort & merge

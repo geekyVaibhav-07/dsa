@@ -1,4 +1,4 @@
-const mergeSort = require('./sorting/mergesort/mergesort');
+const mergeSort = require('./sort/mergesort/mergesort');
 
 const {
     startTime,
