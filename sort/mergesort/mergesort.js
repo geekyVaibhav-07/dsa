@@ -26,7 +26,7 @@ const mergeSort = (arr) => {
     return arr;
 };
 
-const initiateSort = (arr) => {
+const initiateMergeSort = (arr) => {
     const startTime = Date.now();
     const sortedArray = mergeSort(arr);
     const endTime = Date.now();
@@ -39,4 +39,4 @@ const initiateSort = (arr) => {
     
 };
 
-module.exports = initiateSort;
+module.exports = initiateMergeSort;
