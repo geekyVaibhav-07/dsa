@@ -1,13 +1,14 @@
 const merge = (leftArr = [], rightArr = []) => {
     const mergedArray = [];
     let i = 0, j = 0;
-    for (let counter = 0; counter < (leftArr.length + rightArr.length); counter++) {
+    for (let counter = 0; counter < (leftArr.length + rightArr.length); counter ++) {
         if (j === rightArr.length || leftArr[i] <= rightArr[j]) {
             mergedArray.push(leftArr[i]);
-            i++;
-        } else {
+            i ++;
+        }
+        else {
             mergedArray.push(rightArr[j]);
-            j++
+            j ++
         }
     }
     return mergedArray;
