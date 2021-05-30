@@ -25,6 +25,8 @@
         "prefer-const": "warn",
         "no-dupe-else-if": "error",
         "brace-style": [2, "stroustrup", { "allowSingleLine": true }],
-        "no-unused-vars": ["error", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }]
+        "no-unused-vars": ["error", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }],
+        "space-unary-ops": [1, { "words": true, "nonwords": true }],
+        "space-before-blocks": ["error", { "functions": "always", "keywords": "always", "classes": "always" }]
     }
 }

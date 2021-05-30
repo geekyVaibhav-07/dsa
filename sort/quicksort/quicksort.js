@@ -16,12 +16,12 @@ const swap = (arr, index1, index2) => {
  * @returns 
  */
 const quickSort = (arr = [], startIndex = 0, endIndex = arr.length-1) => {
-    if (startIndex <= endIndex){
-        let pivot = startIndex;
+    if (startIndex <= endIndex) {
+        const pivot = startIndex;
         let rightCounter = pivot;
-        for(let i = startIndex; i <= endIndex; i++) {
+        for(let i = startIndex; i <= endIndex; i ++) {
             if(arr[i] < arr[pivot] && i > pivot) {
-                rightCounter++;
+                rightCounter ++;
                 swap(arr, i, rightCounter);
             }
         }
@@ -34,7 +34,7 @@ const quickSort = (arr = [], startIndex = 0, endIndex = arr.length-1) => {
 
 const initiateQuickSort = (arr) => {
     const startTime = Date.now();
-    const sortedArray = quickSort([...arr]);
+    const sortedArray = quickSort([ ...arr ]);
     const endTime = Date.now();
     return {
         startTime,
