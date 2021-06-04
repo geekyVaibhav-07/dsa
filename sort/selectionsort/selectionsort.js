@@ -18,9 +18,9 @@ const swap = (arr, index1, index2) => {
  * @param {*} arr 
  */
 const selectionSort = (arr) => {
-    for(let i = 0; i< arr.length-1; i ++) {
+    for(let i = 0; i< arr.length-1; i++) {
         let minIndex = i;
-        for(let j = i+1; j < arr.length; j ++ ) {
+        for(let j = i+1; j < arr.length; j++ ) {
             if(arr[minIndex] > arr[j]) {
                 minIndex = j;
             }

@@ -4,7 +4,7 @@ const getRandomInt = (max) => {
 
 const generateRandomArray = (n = 1000, max = 9999999) => {
     const array = [];
-    for(i = 0; i < n; i ++) {
+    for(let i = 0; i < n; i++) {
         array.push(getRandomInt(max))
     }
     return array;
