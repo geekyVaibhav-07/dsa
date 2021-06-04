@@ -4,11 +4,12 @@ const {
     bubbleSort,
     selectionSort,
     insertionSort,
-    redixSort
+    redixSort,
+    sort
 } = require('./sort');
 const generateRandomArray = require('./randomData/array/randomArray');
 
-const dataToTest = generateRandomArray(200000, 99999999);
+const dataToTest = generateRandomArray(20000, 99999999);
 
 const redixSortResult = redixSort(dataToTest);
 console.log(redixSortResult);
@@ -28,5 +29,7 @@ console.log(selectionSortResult);
 const insertionSortResult = insertionSort(dataToTest);
 console.log(insertionSortResult);
 
+const sortResult = sort(dataToTest);
+console.log(sortResult);
 
 

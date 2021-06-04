@@ -67,21 +67,31 @@ const redixSort = (numArray = []) => {
     return sortNumbers(negativeBucket, maxNegetiveDigitsCount).reverse().concat(sortNumbers(positiveBucket, maxPositiveDigitsCount));
 };
 
-const initiateRedixSort = (arr) => {
+const initiateRedixSort = (arr = []) => {
+    if(!Array.isArray(arr)) {
+        return {
+            sortedArray: [],
+            message: 'Data should be passed in the form of an array !!!',
+            status: 0
+        }
+    }
     const startTime = Date.now();
     const sortedArray = redixSort(arr);
     const endTime = Date.now();
-    let message = ''
     if (sortedArray.length !== arr.length) {
-        message = 'Invalid data received';
+        return {
+            sortedArray: [],
+            message: 'All the array elemets should be numeric !!!',
+            status: 0
+        }
     }
     return {
+        status: 1,
         sortingType: 'Redix Sort',
         startTime,
         endTime,
         executionTime: endTime-startTime,
         sortedArray,
-        message
     }
     
 };

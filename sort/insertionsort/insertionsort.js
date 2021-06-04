@@ -22,7 +22,7 @@ const shiftElementsCircular = (arr, startIndex = 0, endIndex = arr.length - 1) =
  * inserting the right elements at the correct position
  * @param {*} arr 
  */
-const insertionSort = (arr) => {
+const insertionSort = (arr = []) => {
     for(let i = 1; i< arr.length-1; i++) {
         if(arr[i] < arr [i-1]) {
             for(let j = i; j >= 0; j++) {
@@ -36,11 +36,19 @@ const insertionSort = (arr) => {
     return arr;
 }
 
-const initiateInsertionSort = (arr) => {
+const initiateInsertionSort = (arr = []) => {
+    if(!Array.isArray(arr)) {
+        return {
+            sortedArray: [],
+            message: 'Data should be passed in the form of an array !!!',
+            status: 0
+        }
+    }
     const startTime = Date.now();
     const sortedArray = insertionSort(arr);
     const endTime = Date.now();
     return {
+        status: 1,
         sortingType: 'Insertion Sort',
         startTime,
         endTime,
