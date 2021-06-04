@@ -19,9 +19,9 @@ const quickSort = (arr = [], startIndex = 0, endIndex = arr.length-1) => {
     if (startIndex <= endIndex) {
         const pivot = startIndex;
         let rightCounter = pivot;
-        for(let i = startIndex; i <= endIndex; i ++) {
+        for(let i = startIndex; i <= endIndex; i++) {
             if(arr[i] < arr[pivot] && i > pivot) {
-                rightCounter ++;
+                rightCounter++;
                 swap(arr, i, rightCounter);
             }
         }

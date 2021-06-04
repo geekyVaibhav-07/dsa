@@ -3,11 +3,15 @@ const {
     quickSort,
     bubbleSort,
     selectionSort,
-    insertionSort
+    insertionSort,
+    redixSort
 } = require('./sort');
 const generateRandomArray = require('./randomData/array/randomArray');
 
-const dataToTest = generateRandomArray(2000, 99999999);
+const dataToTest = generateRandomArray(200000, 99999999);
+
+const redixSortResult = redixSort(dataToTest);
+console.log(redixSortResult);
 
 const mergeSortResult = mergeSort(dataToTest);
 console.log(mergeSortResult);
@@ -21,8 +25,8 @@ console.log(bubbleSortResult);
 const selectionSortResult = selectionSort(dataToTest);
 console.log(selectionSortResult);
 
-const insertionnSortResult = insertionSort(dataToTest);
-console.log(insertionnSortResult);
+const insertionSortResult = insertionSort(dataToTest);
+console.log(insertionSortResult);
 
 
 

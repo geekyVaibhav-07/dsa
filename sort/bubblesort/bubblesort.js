@@ -20,7 +20,7 @@ const bubbleSort = (arr) => {
     let swapMade = true;
     while (swapMade) {
         swapMade = false;
-        for(let i = 0; i < arr.length; i ++) {
+        for(let i = 0; i < arr.length; i++) {
             const j = i+1;
             if(arr[i] > arr[j]) {
                 swap(arr, i, j);

@@ -7,6 +7,11 @@
         "ecmaVersion": 12,
         "sourceType": "module"
     },
+    "globals": {
+        "Math": true,
+        "require": true,
+        "module": true
+    },
     "rules": {
         "linebreak-style": ["off", "windows"],
         "no-template-curly-in-string": "error",
@@ -26,7 +31,9 @@
         "no-dupe-else-if": "error",
         "brace-style": [2, "stroustrup", { "allowSingleLine": true }],
         "no-unused-vars": "error",
-        "space-unary-ops": [1, { "words": true, "nonwords": true }],
-        "space-before-blocks": ["error", { "functions": "always", "keywords": "always", "classes": "always" }]
+        "space-unary-ops": [1, { "words": true, "nonwords": false }],
+        "space-before-blocks": ["error", { "functions": "always", "keywords": "always", "classes": "always" }],
+        "no-undef": "error",
+        "no-redeclare": "error"
     }
 }
