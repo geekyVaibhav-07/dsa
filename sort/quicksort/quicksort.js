@@ -32,11 +32,19 @@ const quickSort = (arr = [], startIndex = 0, endIndex = arr.length-1) => {
     return arr;
 }
 
-const initiateQuickSort = (arr) => {
+const initiateQuickSort = (arr = []) => {
+    if(!Array.isArray(arr)) {
+        return {
+            sortedArray: [],
+            message: 'Data should be passed in the form of an array !!!',
+            status: 0
+        }
+    }
     const startTime = Date.now();
     const sortedArray = quickSort([ ...arr ]);
     const endTime = Date.now();
     return {
+        status: 1,
         sortingType: 'Quick Sort',
         startTime,
         endTime,

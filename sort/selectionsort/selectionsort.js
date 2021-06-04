@@ -30,11 +30,19 @@ const selectionSort = (arr) => {
     return arr;
 }
 
-const initiateSelectionSort = (arr) => {
+const initiateSelectionSort = (arr = []) => {
+    if(!Array.isArray(arr)) {
+        return {
+            sortedArray: [],
+            message: 'Data should be passed in the form of an array !!!',
+            status: 0
+        }
+    }
     const startTime = Date.now();
     const sortedArray = selectionSort(arr);
     const endTime = Date.now();
     return {
+        status: 1,
         sortingType: 'Selection Sort',
         startTime,
         endTime,

@@ -18,7 +18,7 @@ const merge = (leftArr = [], rightArr = []) => {
  * time complexity = O(nlogn)
  * algo => split - sort & merge
  */
-const mergeSort = (arr) => {
+const mergeSort = (arr = []) => {
     if (arr.length > 1) {
         const leftArr = mergeSort(arr.slice(0, Math.floor(arr.length/2)));
         const rightArr = mergeSort(arr.slice(Math.floor(arr.length/2)));
@@ -27,11 +27,19 @@ const mergeSort = (arr) => {
     return arr;
 };
 
-const initiateMergeSort = (arr) => {
+const initiateMergeSort = (arr = []) => {
+    if(!Array.isArray(arr)) {
+        return {
+            sortedArray: [],
+            message: 'Data should be passed in the form of an array !!!',
+            status: 0
+        }
+    }
     const startTime = Date.now();
     const sortedArray = mergeSort(arr);
     const endTime = Date.now();
     return {
+        status: 1,
         sortingType: 'Merge Sort',
         startTime,
         endTime,

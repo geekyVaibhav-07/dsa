@@ -16,7 +16,7 @@ const swap = (arr, index1, index2) => {
  * selection sort where we select and do a swap at the end of the loop
  * @param {*} arr 
  */
-const bubbleSort = (arr) => {
+const bubbleSort = (arr = []) => {
     let swapMade = true;
     while (swapMade) {
         swapMade = false;
@@ -31,11 +31,19 @@ const bubbleSort = (arr) => {
     return arr;
 }
 
-const initiateBubbleSort = (arr) => {
+const initiateBubbleSort = (arr = []) => {
+    if(!Array.isArray(arr)) {
+        return {
+            sortedArray: [],
+            message: 'Data should be passed in the form of an array !!!',
+            status: 0
+        }
+    }
     const startTime = Date.now();
     const sortedArray = bubbleSort(arr);
     const endTime = Date.now();
     return {
+        status: 1,
         sortingType: 'Bubble Sort',
         startTime,
         endTime,
