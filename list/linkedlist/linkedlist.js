@@ -5,6 +5,14 @@ class Node {
     };
 }
 
+/**
+ * Time complexity: 
+ * insertion = O(1)
+ * removal  = O(1) or O(n)
+ * searching = O(n)
+ * access = O(n)
+ */
+
 class SinglyLinkedList {
     constructor(value = null) {
         const node = new Node(value)
