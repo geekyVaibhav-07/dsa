@@ -2,10 +2,11 @@ class Node {
     constructor(value = null) {
         this.value = value;
         this.next = null;
+        this.prev = null;
     }
 };
 
-class SinglyLinedList {
+class DoublyLinedList {
     constructor() {
         this.head = null;
         this.tail = null;
@@ -14,13 +15,14 @@ class SinglyLinedList {
 
     push(value = null) {
         const node = new Node(value);
-        if (this.length === 0) {
+        if (!this.head) {
             this.head = node;
             this.tail = node;
             this.length++;
             return this.tail.value;
         }
         this.tail.next = node;
+        node.prev = this.tail;
         this.tail = node;
         this.length++;
         return this.tail.value;
@@ -37,15 +39,11 @@ class SinglyLinedList {
             this.length--;
             return popedItem;
         }
-        let iterator = this.head;
-        while(iterator && iterator.next && iterator.next.next) {
-            iterator = iterator.next;
-        }
-        const popedItem = iterator.next.value;
-        iterator.next = null;
-        this.tail = iterator;
+        const popedNode = this.tail;
+        this.tail = this.tail.prev;
+        this.tail.next = null;
         this.length--;
-        return popedItem.value;
+        return popedNode.value;
     }
 
     shift() {
@@ -54,19 +52,24 @@ class SinglyLinedList {
         }
         const nodeToBeRemoved = this.head;
         this.head = this.head.next;
+        this.head.prev = null;
         this.length--;
         return nodeToBeRemoved.value
     }
 
     unshift(value = null) {
         const node = new Node(value);
-        node.next = this.head;
-        this.head = node;
-        if(!this.tail) {
+        if(this.length === 0) {
+            this.head = node;
             this.tail = node;
+            this.length++;
+            return this.head.value;
         }
+        node.next = this.head;
+        this.head.prev = node;
+        this.head = node;
         this.length++;
-        return value;
+        return this.head.value;;
     }
 
     getNode(index = 0) {
@@ -89,7 +92,6 @@ class SinglyLinedList {
         const node = this.getNode(index);
         return node ? node.value : undefined;
     }
-
 
     set(value = null, index = 0) {
         if (index < 0 || index >= this.length || isNaN(index)) {
@@ -136,6 +138,8 @@ class SinglyLinedList {
         }
         node.next = iterator.next;
         iterator.next = node;
+        node.prev = iterator;
+        node.next.prev = node;
         this.length++;
         return iterator.next.value;
     }
@@ -161,6 +165,7 @@ class SinglyLinedList {
         }
         const valueToBeRemoved = iterator.next.value;
         iterator.next = iterator.next.next;
+        iterator.next.prev = iterator;
         this.length--;
         return valueToBeRemoved;
     }
@@ -182,6 +187,7 @@ class SinglyLinedList {
                 iterator = iterator.next;
                 const node = new Node(iterator.value);
                 node.next = newHead;
+                newHead.prev = node;
                 newHead = node;
             }
             
@@ -210,4 +216,4 @@ class SinglyLinedList {
     }
 }
 
-module.exports = SinglyLinedList;
+module.exports = DoublyLinedList;
