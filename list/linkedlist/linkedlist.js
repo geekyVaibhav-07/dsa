@@ -1,318 +1,206 @@
 class Node {
     constructor(value = null) {
         this.value = value;
-        this.next = null
-    };
-}
+        this.next = null;
+    }
+};
 
-/**
- * Time complexity: 
- * insertion = O(1)
- * removal  = O(1) or O(n)
- * searching = O(n)
- * access = O(n)
- */
-
-class SinglyLinkedList {
-    constructor(value = null) {
-        const node = new Node(value)
-        this.head = node;
-        this.tail = node;
-        this.length = 1;
+class SinglyLinedList {
+    constructor() {
+        this.head = null;
+        this.tail = null;
+        this.length = 0;
     }
 
-    getLength() {
-        return this.length;
-    }
-
-    deleteNode(position = 1) {
-        if (position > this.length) {
-            return undefined
-        }
-        let nodeToBeDeleted = {};
-        if(position === 1) {
-            nodeToBeDeleted = this.head;
-            this.head = this.head.next;
-            this.length--;
-            return nodeToBeDeleted.value;
-        }
-        else {
-            let iterator = null;
-            for (let i = 1 ; i < position; i++) {
-                if(i === 1) {
-                    iterator = this.head;
-                }
-                else {
-                    iterator = iterator.next
-                }
-            }
-            nodeToBeDeleted = iterator.next;
-            if(position === this.length) {
-                iterator.next = null;
-                this.tail = iterator;
-                this.length--;
-            }
-            else {
-                iterator.next = iterator.next.next;
-                this.length--;
-            }
-        }
-        return nodeToBeDeleted.value
-    }
-
-    ifExist(value = null) {
-        let iterator = this.head;
-        while(iterator) {
-            if(iterator === value) {
-                return true;
-            }
-            else {
-                iterator = iterator.next;
-            }
-        }
-        return false;
-    }
-
-    firtsOccurancePoisiton(value = null) {
-        let iterator = this.head;
-        let i = 1;
-        while(iterator) {
-            if(iterator === value) {
-                return i;
-            }
-            else {
-                iterator = iterator.next;
-                i++;
-            }
-        }
-        return -1;
-    }
-
-    occurance(value = null) {
-        let iterator = this.head;
-        const returnArray = [];
-        let i = 1;
-        while(iterator) {
-            if(iterator === value) {
-                returnArray.push(i);
-            }
-            else {
-                iterator = iterator.next;
-                i++;
-            }
-        }
-        return returnArray;
-    }
-
-    shiftTail(position = this.length) {
-        if (isNaN(position) || position < 1 || position > this.length) {
-            return undefined
-        }
-        else{
-            let iterator = null;
-            for (let i = 1; i <= position; i++) {
-                if( i ===  1) {
-                    iterator = this.head;
-                }
-                if (i === position) {
-                    this.tail = iterator;
-                    this.length = position;
-                }
-                else {
-                    iterator = iterator.next;
-                }
-            }
-        }
-    }
-
-    shiftHead(position = 1) {
-        if (isNaN(position) || position < 1 || position > this.length) {
-            return undefined
-        }
-        else{
-            let iterator = null;
-            for (let i = 1; i <= position; i++) {
-                if( i ===  1) {
-                    iterator = this.head;
-                }
-                if (i === position) {
-                    this.head = iterator;
-                    this.length = this.length - position;
-                }
-                else {
-                    iterator = iterator.next;
-                }
-            }
-        }
-    }
-
-    pushAtTail(value = null) {
+    push(value = null) {
         const node = new Node(value);
-        this.tail.next = node;
-        this.tail = node;
-        this.length++;
-    }
-
-    pushAtHead(value = null) {
-        const node = new Node(value);
-        node.next = this.head;
-        this.head = node;
-        this.length++;
-    }
-
-    pushAfterTail(value = null, position = 1) {
-        if(position < this.length + 1) {
-            return undefined
-        }
-        let iterator = null;
-        for(let i = 1; i <= position; i++) {
-            if(i === position) {
-                iterator = new Node(value);
-                this.tail.next = iterator;
-                this.tail = iterator;
-                this.length++;
-            }
-            else {
-                iterator = new Node();
-                this.tail.next = iterator;
-                this.tail = iterator;
-                this.length++;
-            }
-        }
-    }
-
-    push(value = null, position = this.length + 1) {
-        const node = new Node(value);
-        if (position === 1) {
-            this.pushAtHead(value);
-        }
-        else if (position === this.length + 1 || isNaN(position)) {
-            this.pushAtTail(value);
-        }
-        else if (position > this.length + 1) {
-            this.pushAfterTail(value, (position - this.length));
-        }
-        else if (!isNaN(position) && position <= this.length) {
-            let iterator = this.head;
-            for (let i = 2; i < position; i++) {
-                if (iterator.next) {
-                    iterator = iterator.next;
-                }
-            }
-            node.next = iterator.next;
-            iterator.next = node;
+        if (!this.head) {
+            this.head = node;
+            this.tail = node;
             this.length++;
+            return this.tail.value;
         }
-        return value;
+        let iterator = this.head;
+        while(iterator.next) {
+            iterator = iterator.next
+        };
+        iterator.next = node;
+        this.tail = iterator.next;
+        this.length++;
+        return this.tail.value;
     }
-
-    printList(printerFunction = console.log) {
-        let iterator = null;
-        for (let i = 1; i <= this.length; i++) {
-            if (i === 1) {
-                iterator = this.head;
-            }
-            else {
-                iterator = iterator.next;
-            }
-            printerFunction(iterator.value);
-        }
-    }
-
-    // default supported methods
 
     pop() {
-        let iterator = null;
-        for (let i = 1; i <= this.length -1; i++) {
-            if (i === 1) {
-                iterator = this.head;
-            }
-            else {
-                iterator = iterator.next
-            }
+        if(!this.head) {
+            return false;
         }
-        const valueToBePoped = iterator.next.value;
+        if(this.length === 1) {
+            const popedItem = this.head.value
+            this.head = null;
+            this.tail = null;
+            this.length--;
+            return popedItem;
+        }
+        let iterator = this.head;
+        while(iterator && iterator.next && iterator.next.next) {
+            iterator = iterator.next;
+        }
+        const popedItem = iterator.next.value;
         iterator.next = null;
         this.tail = iterator;
         this.length--;
-        return valueToBePoped;
+        return popedItem.value;
     }
 
     shift() {
-        const returnValue = this.head.value;
+        if(!this.head) {
+            return false
+        }
+        const nodeToBeRemoved = this.head;
         this.head = this.head.next;
         this.length--;
-        return returnValue;
+        return nodeToBeRemoved.value
     }
 
     unshift(value = null) {
-        return this.push(value, 1);
-    }
-
-    get(position = 1) {
-        if (isNaN(position || position < 1 || position > this.length)) {
-            return undefined;
+        const node = new Node(value);
+        node.next = this.head;
+        this.head = node;
+        if(!this.tail) {
+            this.tail = node;
         }
-        let iterator = null;
-        for (let i = 1; i <= position; i++) {
-            if ( i === 1) {
-                iterator = this.head;
-            }
-            else if (iterator.next) {
-                iterator = iterator.next;
-            }
-        }
-        return iterator.value;
-    }
-
-    set(value = null, position = 1) {
-        if (isNaN(position || position < 1 || position > this.length)) {
-            return undefined;
-        }
-        let iterator = null;
-        for (let i = 1; i <= position; i++) {
-            if ( i === 1) {
-                iterator = this.head;
-            }
-            else if (iterator.next) {
-                iterator = iterator.next;
-            }
-            else {
-                return undefined;
-            }
-        }
-        iterator.value = value;
+        this.length++;
         return value;
     }
-    
-    insert(value = null, position = 1) {
-        return this.push(value, position);
+
+    get(index = 0) {
+        if (index < 0 || index >= this.length || isNaN(index)) {
+            return undefined;
+        }
+        let iterator = new Node();
+        for (let i = 0; i < index; i++) {
+            if(i === 0) {
+                iterator = this.head;
+            }
+            else {
+                iterator = iterator.next;
+            }
+        }
+        return iterator.value
     }
 
-    remove(position = 1) {
-        return this.deleteNode(position);
+    set(value = null, index = 0) {
+        if (index < 0 || index >= this.length || isNaN(index)) {
+            return undefined;
+        }
+        let iterator = new Node();
+        for (let i = 0; i <= index; i++) {
+            if(i === 0) {
+                iterator = this.head;
+            }
+            else {
+                iterator = iterator.next;
+            }
+        }
+        const valueToBeChanged = iterator.value;
+        iterator.value = value;
+        return valueToBeChanged;
+    }
+
+    insert(value = null, index = 0) {
+        if (index < 0 || index > this.length || isNaN(index)) {
+            return undefined;
+        }
+        if (index === 0) {
+            return this.unshift(value);
+        }
+        if (index === this.length) {
+            return this.push(value);
+        }
+        const node = new Node(value);
+        let iterator = new Node();
+        for (let i = 0; i < index; i++) {
+            if(i === 0) {
+                iterator = this.head;
+            }
+            else {
+                iterator = iterator.next;
+            }
+        }
+        node.next = iterator.next;
+        iterator.next = node;
+        this.length++;
+        return iterator.next.value;
+    }
+
+    remove(index = 0) {
+        if (index < 0 || index >= this.length || isNaN(index)) {
+            return undefined;
+        }
+        if (index === 0) {
+            return this.shift();
+        }
+        if (index === this.length - 1) {
+            return this.pop();
+        }
+        let iterator = new Node();
+        for (let i = 0; i < index; i++) {
+            if(i === 0) {
+                iterator = this.head;
+            }
+            else {
+                iterator = iterator.next;
+            }
+        }
+        const valueToBeRemoved = iterator.next.value;
+        iterator.next = iterator.next.next;
+        this.length--;
+        return valueToBeRemoved;
     }
 
     reverse() {
-        let newHead = null;
-        let newTail = null;
-        let iterator = null;
-        for (let i = 1; i <= this.length; i++) {
-            if( i === 1) {
-                iterator = this.head;
-                newTail = iterator;
-                newHead = iterator;
-            }
-            else if(iterator.next) {
-                iterator = iterator.next
-                const newNode = new Node(iterator.value);
-                newNode.next = newHead;
-                newHead = newNode;
-            }
+        if(this.length === 0) {
+            return true;
         }
-        this.tail = newTail;
+        let newHead = new Node();
+        let newTail = new Node();
+        let iterator = new Node();
+        for (let i = 0; i < this.length; i++) {
+            if (i === 0 ) {
+                iterator = this.head;
+                newHead = new Node(iterator.value);
+                newTail = new Node(iterator.value);
+            }
+            else {
+                iterator = iterator.next;
+                const node = new Node(iterator.value);
+                node.next = newHead;
+                newHead = node;
+            }
+            
+        }
         this.head = newHead;
+        this.tail = newTail;
+        return true;
+    }
+    
+    toArray() {
+        let iterator = this.head;
+        const arrayList = [];
+        while(iterator) {
+            arrayList.push(iterator.value);
+            iterator = iterator.next;
+        }
+        return arrayList;
+    }
+
+    toString(separator = ' ') {
+        return this.toArray().join(separator);
+    }
+
+    getObject() {
+        return this
     }
 }
 
-module.exports = SinglyLinkedList;
+module.exports = SinglyLinedList
