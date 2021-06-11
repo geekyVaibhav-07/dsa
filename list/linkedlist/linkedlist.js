@@ -18,20 +18,20 @@ class SinglyLinedList {
             this.head = node;
             this.tail = node;
             this.length++;
-            return this.tail.value;
+            return this;
         }
         this.tail.next = node;
         this.tail = node;
         this.length++;
-        return this.tail.value;
+        return this;
     }
 
     pop() {
         if(this.length === 0) {
-            return false;
+            return undefined;
         }
         if(this.length === 1) {
-            const popedItem = this.head.value
+            const popedItem = this.head;
             this.head = null;
             this.tail = null;
             this.length--;
@@ -41,21 +41,21 @@ class SinglyLinedList {
         while(iterator && iterator.next && iterator.next.next) {
             iterator = iterator.next;
         }
-        const popedItem = iterator.next.value;
+        const popedItem = iterator.next;
         iterator.next = null;
         this.tail = iterator;
         this.length--;
-        return popedItem.value;
+        return popedItem;
     }
 
     shift() {
         if(this.length === 0) {
-            return false
+            return undefined
         }
         const nodeToBeRemoved = this.head;
         this.head = this.head.next;
         this.length--;
-        return nodeToBeRemoved.value
+        return nodeToBeRemoved;
     }
 
     unshift(value = null) {
@@ -66,39 +66,12 @@ class SinglyLinedList {
             this.tail = node;
         }
         this.length++;
-        return value;
+        return this;
     }
 
-    getNode(index = 0) {
+    get(index = 0) {
         if (index < 0 || index >= this.length || isNaN(index)) {
-            return undefined;
-        }
-        let iterator = new Node();
-        for (let i = 0; i < index; i++) {
-            if(i === 0) {
-                iterator = this.head;
-            }
-            else {
-                iterator = iterator.next;
-            }
-        }
-        return iterator
-    }
-
-    getNodeValue(index = 0) {
-        const node = this.getNode(index);
-        return node ? node.value : undefined;
-    }
-
-
-    set(value = null, index = 0) {
-        if (index < 0 || index >= this.length || isNaN(index)) {
-            return undefined;
-        }
-        if (index === this.length - 1) {
-            const valueToBeChanged = this.tail.value;
-            this.tail.value = value;
-            return valueToBeChanged;
+            return null;
         }
         let iterator = new Node();
         for (let i = 0; i <= index; i++) {
@@ -109,9 +82,16 @@ class SinglyLinedList {
                 iterator = iterator.next;
             }
         }
-        const valueToBeChanged = iterator.value;
-        iterator.value = value;
-        return valueToBeChanged;
+        return iterator
+    }
+
+    set(value = null, index = 0) {
+        const nodeToBeUpdated = this.get(index);
+        if (nodeToBeUpdated) {
+            nodeToBeUpdated.value = value;
+            return true;
+        }
+        return false;
     }
 
     insert(value = null, index = 0) {
@@ -137,7 +117,7 @@ class SinglyLinedList {
         node.next = iterator.next;
         iterator.next = node;
         this.length++;
-        return iterator.next.value;
+        return this;
     }
 
     remove(index = 0) {
@@ -159,15 +139,15 @@ class SinglyLinedList {
                 iterator = iterator.next;
             }
         }
-        const valueToBeRemoved = iterator.next.value;
+        const nodeToBeRemoved = iterator.next;
         iterator.next = iterator.next.next;
         this.length--;
-        return valueToBeRemoved;
+        return nodeToBeRemoved;
     }
 
     reverse() {
         if(this.length === 0) {
-            return true;
+            return this;
         }
         let newHead = new Node();
         let newTail = new Node();
@@ -188,7 +168,7 @@ class SinglyLinedList {
         }
         this.head = newHead;
         this.tail = newTail;
-        return true;
+        return this;
     }
     
     toArray() {
