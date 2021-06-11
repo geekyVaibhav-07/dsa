@@ -1,10 +1,10 @@
-const mergeSort = require('./mergesort/mergesort');
-const quickSort = require('./quicksort/quicksort');
-const bubbleSort = require('./bubblesort/bubblesort');
-const selectionSort = require('./selectionsort/selectionsort');
-const insertionSort = require('./insertionsort/insertionsort');
-const redixSort = require('./redixsort/redixsort');
-const sort = mergeSort; //default sort O(nlogn)
+const mergeSort = require('./mergeSort/mergeSort');
+const quickSort = require('./quickSort/quickSort');
+const bubbleSort = require('./bubbleSort/bubbleSort');
+const selectionSort = require('./selectionSort/selectionSort');
+const insertionSort = require('./insertionSort/insertionSort');
+const redixSort = require('./redixSort/redixSort');
+const sort = mergeSort; //default Sort O(nlogn)
 
 module.exports = {
     mergeSort,
