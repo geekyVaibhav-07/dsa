@@ -19,21 +19,21 @@ class DoublyLinedList {
             this.head = node;
             this.tail = node;
             this.length++;
-            return this.tail.value;
+            return this;
         }
         this.tail.next = node;
         node.prev = this.tail;
         this.tail = node;
         this.length++;
-        return this.tail.value;
+        return this;
     }
 
     pop() {
         if(this.length === 0) {
-            return false;
+            return undefined;
         }
         if(this.length === 1) {
-            const popedItem = this.head.value
+            const popedItem = this.head;
             this.head = null;
             this.tail = null;
             this.length--;
@@ -43,18 +43,18 @@ class DoublyLinedList {
         this.tail = this.tail.prev;
         this.tail.next = null;
         this.length--;
-        return popedNode.value;
+        return popedNode;
     }
 
     shift() {
         if(this.length === 0) {
-            return false
+            return undefined
         }
         const nodeToBeRemoved = this.head;
         this.head = this.head.next;
         this.head.prev = null;
         this.length--;
-        return nodeToBeRemoved.value
+        return nodeToBeRemoved;
     }
 
     unshift(value = null) {
@@ -63,44 +63,18 @@ class DoublyLinedList {
             this.head = node;
             this.tail = node;
             this.length++;
-            return this.head.value;
+            return this;
         }
         node.next = this.head;
         this.head.prev = node;
         this.head = node;
         this.length++;
-        return this.head.value;;
+        return this;
     }
 
-    getNode(index = 0) {
+    get(index = 0) {
         if (index < 0 || index >= this.length || isNaN(index)) {
-            return undefined;
-        }
-        let iterator = new Node();
-        for (let i = 0; i < index; i++) {
-            if(i === 0) {
-                iterator = this.head;
-            }
-            else {
-                iterator = iterator.next;
-            }
-        }
-        return iterator
-    }
-
-    getNodeValue(index = 0) {
-        const node = this.getNode(index);
-        return node ? node.value : undefined;
-    }
-
-    set(value = null, index = 0) {
-        if (index < 0 || index >= this.length || isNaN(index)) {
-            return undefined;
-        }
-        if (index === this.length - 1) {
-            const valueToBeChanged = this.tail.value;
-            this.tail.value = value;
-            return valueToBeChanged;
+            return null;
         }
         let iterator = new Node();
         for (let i = 0; i <= index; i++) {
@@ -111,9 +85,16 @@ class DoublyLinedList {
                 iterator = iterator.next;
             }
         }
-        const valueToBeChanged = iterator.value;
-        iterator.value = value;
-        return valueToBeChanged;
+        return iterator
+    }
+
+    set(value = null, index = 0) {
+        const nodeToBeUpdated = this.get(index);
+        if (nodeToBeUpdated) {
+            nodeToBeUpdated.value = value;
+            return true;
+        }
+        return false;
     }
 
     insert(value = null, index = 0) {
@@ -141,7 +122,7 @@ class DoublyLinedList {
         node.prev = iterator;
         node.next.prev = node;
         this.length++;
-        return iterator.next.value;
+        return this;
     }
 
     remove(index = 0) {
@@ -163,16 +144,16 @@ class DoublyLinedList {
                 iterator = iterator.next;
             }
         }
-        const valueToBeRemoved = iterator.next.value;
+        const nodeToBeRemoved = iterator.next;
         iterator.next = iterator.next.next;
         iterator.next.prev = iterator;
         this.length--;
-        return valueToBeRemoved;
+        return nodeToBeRemoved;
     }
 
     reverse() {
         if(this.length === 0) {
-            return true;
+            return this;
         }
         let newHead = new Node();
         let newTail = new Node();
@@ -194,7 +175,7 @@ class DoublyLinedList {
         }
         this.head = newHead;
         this.tail = newTail;
-        return true;
+        return this;
     }
     
     toArray() {

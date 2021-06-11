@@ -25,8 +25,8 @@ const DList = new DoublyLinkedList();
 DList.push(10);
 DList.unshift(1);
 DList.push(2);
-DList.push(3);
-DList.shift()
+DList.push(3).push(100);
+console.log(DList.shift());
 console.log(DList.toArray());
 DList.insert(1,1)
 console.log(DList.toArray());
