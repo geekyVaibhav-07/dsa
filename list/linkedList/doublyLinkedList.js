@@ -1,3 +1,8 @@
+/**
+ * dobuly linked list node should have value,
+ * next (pointer to next node) and
+ * prev (pointer to previous node)
+ */
 class Node {
     constructor(value = null) {
         this.value = value;
@@ -12,7 +17,12 @@ class DoublyLinedList {
         this.tail = null;
         this.length = 0;
     }
-
+    
+    /**
+     * it adds a node at the ned of the list
+     * @param {*} value 
+     * @returns doubly linked list
+     */
     push(value = null) {
         const node = new Node(value);
         if (!this.head) {
@@ -28,6 +38,10 @@ class DoublyLinedList {
         return this;
     }
 
+    /**
+     * deletes the last node and returns it
+     * @returns node at the tail
+     */
     pop() {
         if(this.length === 0) {
             return undefined;
@@ -46,6 +60,10 @@ class DoublyLinedList {
         return popedNode;
     }
 
+    /**
+     * shift the head to the next node
+     * @returns initial head node
+     */
     shift() {
         if(this.length === 0) {
             return undefined
@@ -57,6 +75,11 @@ class DoublyLinedList {
         return nodeToBeRemoved;
     }
 
+    /**
+     * adds a node at the begining and makes it new head
+     * @param {*} value 
+     * @returns the doubly linked list
+     */
     unshift(value = null) {
         const node = new Node(value);
         if(this.length === 0) {
@@ -72,6 +95,11 @@ class DoublyLinedList {
         return this;
     }
 
+    /**
+     * 
+     * @param {*} index 
+     * @returns the node at the index
+     */
     get(index = 0) {
         if (index < 0 || index >= this.length || isNaN(index)) {
             return null;
@@ -88,6 +116,12 @@ class DoublyLinedList {
         return iterator
     }
 
+    /**
+     * updates the node value at index
+     * @param {*} value 
+     * @param {*} index 
+     * @returns boolean 
+     */
     set(value = null, index = 0) {
         const nodeToBeUpdated = this.get(index);
         if (nodeToBeUpdated) {
@@ -97,6 +131,12 @@ class DoublyLinedList {
         return false;
     }
 
+    /**
+     * inser a new node at given index
+     * @param {*} value 
+     * @param {*} index 
+     * @returns doubly linked list
+     */
     insert(value = null, index = 0) {
         if (index < 0 || index > this.length || isNaN(index)) {
             return undefined;
@@ -125,6 +165,11 @@ class DoublyLinedList {
         return this;
     }
 
+    /**
+     * removes a node from a given index
+     * @param {*} index 
+     * @returns removed node
+     */
     remove(index = 0) {
         if (index < 0 || index >= this.length || isNaN(index)) {
             return undefined;
@@ -151,33 +196,10 @@ class DoublyLinedList {
         return nodeToBeRemoved;
     }
 
-    reverse() {
-        if(this.length === 0) {
-            return this;
-        }
-        let newHead = new Node();
-        let newTail = new Node();
-        let iterator = new Node();
-        for (let i = 0; i < this.length; i++) {
-            if (i === 0 ) {
-                iterator = this.head;
-                newHead = new Node(iterator.value);
-                newTail = newHead;
-            }
-            else {
-                iterator = iterator.next;
-                const node = new Node(iterator.value);
-                node.next = newHead;
-                newHead.prev = node;
-                newHead = node;
-            }
-            
-        }
-        this.head = newHead;
-        this.tail = newTail;
-        return this;
-    }
-    
+    /**
+     * 
+     * @returns the array of all the node values
+     */
     toArray() {
         let iterator = this.head;
         const arrayList = [];
@@ -188,12 +210,13 @@ class DoublyLinedList {
         return arrayList;
     }
 
+    /**
+     * 
+     * @param {*} separator 
+     * @returns a string of all the values separated by 'separator'
+     */
     toString(separator = ' ') {
         return this.toArray().join(separator);
-    }
-
-    getObject() {
-        return this
     }
 }
 
