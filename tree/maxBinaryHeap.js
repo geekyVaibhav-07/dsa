@@ -43,7 +43,7 @@ class MaxBinaryHeap {
             const leftChildIndex = 2*index+1;
             const rightChildIndex = 2*index+2;
             const greaterChildIndex = this.values[leftChildIndex] > this.values[rightChildIndex] ? leftChildIndex : rightChildIndex;
-            if (this.values[greaterChildIndex] > this.values[index]) {
+            if (this.values[greaterChildIndex] && this.values[greaterChildIndex] > this.values[index]) {
                 this.swap(greaterChildIndex, index);
                 sinkDown(greaterChildIndex);
             }
@@ -62,6 +62,10 @@ class MaxBinaryHeap {
         sinkDown();
         return max;
 
+    }
+
+    find(value) {
+        return this.value.includes(value);
     }
 
     getHeap() {
