@@ -1,0 +1,3 @@
+Tree: DS that consist of nodes in parent/child relationship. Each parent (node) can have multiple ( 0 -n ) childe nodes. Eg. Singly linked list. The topmost node is called root. ALl the other nodes (other than root) should have only one parent node.
+Binary Tree (BT): treen in which each node can have 0-2 nodes and not more than 2 node.
+Binary Search Tree (BST): BT in which left child node value (if any) is always less tnan parent and right child node value (if any) is always greater than parent.
