@@ -13,13 +13,13 @@ class Node {
     constructor(value) {
         this.value = value;
         this.prev = null;
-        this.size = 0;
     }
 }
 
 class Stack {
     constructor() {
         this.top = null;
+        this.size = 0;
     }
 
     push(value) {

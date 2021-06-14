@@ -25,6 +25,10 @@ class Queue {
         this.size = 0;
     }
 
+    getSize() {
+        return this.size;
+    }
+
     enQueue(value = null) {
         const node  = new Node(value);
         if(this.size > 0) {
