@@ -62,9 +62,26 @@ const depthFirstInOrder = (binaryTreeRoot) => {
     return result;
 }
 
+/**
+ * tree traversal can also be done with generator function (ES6)
+ * while running the for of loop, each yield will be equivalent to one iteration
+ * depeding upon hte order of yeilds, pre, post or in order traversal can be achieved
+ */
+
+function* getNodeValuesUsingGenerator(node) {
+    yield node.value;
+    if (node.left) {
+        yield *getNodeValuesUsingGenerator(node.left);
+    }
+    if (node.right) {
+        yield *getNodeValuesUsingGenerator(node.right);
+    }
+}
+
 module.exports = {
     breadthFirstSearch,
     depthFirstPreOrder,
     depthFirstPostOrder,
-    depthFirstInOrder
+    depthFirstInOrder,
+    getNodeValuesUsingGenerator
 }
